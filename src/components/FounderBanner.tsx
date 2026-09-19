@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { Award, Globe, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { Award, Globe, CheckCircle2, ShieldCheck, Copy, Check, ExternalLink } from 'lucide-react';
 
 const GithubIcon: React.FC<{ className?: string }> = ({ className = 'w-4 h-4' }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -10,28 +10,39 @@ const GithubIcon: React.FC<{ className?: string }> = ({ className = 'w-4 h-4' })
 
 export const FounderBanner: React.FC = () => {
   const { t } = useLanguage();
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyLink = () => {
+    try {
+      navigator.clipboard.writeText('https://impactlearn-nigeria.slyokoh.workers.dev');
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch {
+      // fallback
+    }
+  };
 
   return (
     <section 
       aria-labelledby="founder-section-title"
-      className="bg-gradient-to-r from-emerald-900 via-slate-900 to-emerald-950 text-white rounded-2xl p-6 md:p-8 shadow-xl border border-emerald-800/40 relative overflow-hidden my-6"
+      className="bg-gradient-to-r from-emerald-950 via-slate-900 to-emerald-900 text-white rounded-3xl p-6 md:p-8 shadow-2xl border border-emerald-500/30 relative overflow-hidden my-6"
     >
       {/* Decorative background aura */}
-      <div className="absolute top-0 right-0 -mt-8 -mr-8 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 -mb-8 -ml-8 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 -mt-10 -mr-10 w-72 h-72 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-72 h-72 bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 justify-between">
+      <div className="relative z-10 flex flex-col lg:flex-row items-center gap-6 justify-between">
         {/* Founder Profile & Credentials */}
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left">
           {/* Avatar / Portrait treatment */}
           <div className="relative group shrink-0">
-            <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-gradient-to-br from-emerald-400 via-amber-300 to-emerald-600 p-1 shadow-lg ring-4 ring-white/10">
+            <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-gradient-to-br from-emerald-400 via-amber-300 to-emerald-600 p-1 shadow-xl ring-4 ring-white/10">
               <div className="w-full h-full rounded-[14px] bg-slate-900 flex flex-col items-center justify-center text-white overflow-hidden relative">
                 <span className="text-2xl md:text-3xl font-black tracking-wider text-amber-300">
                   SO
                 </span>
                 <span className="text-[9px] font-bold text-emerald-400 uppercase tracking-widest mt-0.5">
-                  Nigeria
+                  Nigeria 🇳🇬
                 </span>
               </div>
             </div>
@@ -41,40 +52,54 @@ export const FounderBanner: React.FC = () => {
           </div>
 
           <div className="space-y-1.5">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-semibold">
-              <Award className="w-3.5 h-3.5" aria-hidden="true" />
-              <span>Project Lead & Owner</span>
+            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold">
+              <Award className="w-3.5 h-3.5 text-amber-300" aria-hidden="true" />
+              <span>Project Lead & Owner &bull; Portfolio Work Sample</span>
             </div>
-            <h2 id="founder-section-title" className="text-xl md:text-2xl font-black text-white tracking-tight">
+            <h2 id="founder-section-title" className="text-2xl md:text-3xl font-black text-white tracking-tight">
               {t('founderName')}
             </h2>
             <p className="text-xs md:text-sm text-emerald-200/90 font-medium">
               {t('founderTitle')} &bull; <strong className="text-white">{t('organizationName')}</strong>
             </p>
-            <p className="text-xs text-slate-300 max-w-xl leading-relaxed pt-1">
+            <p className="text-xs md:text-sm text-slate-300 max-w-xl leading-relaxed pt-1">
               Pioneering inclusive digital literacy and vocational empowerment across Nigerian communities through accessible, indigenous language technologies.
             </p>
           </div>
         </div>
 
-        {/* Quick Links & Verification Badges */}
-        <div className="flex flex-wrap sm:flex-col items-center sm:items-end gap-2.5 shrink-0 w-full sm:w-auto justify-center sm:justify-end border-t sm:border-t-0 border-white/10 pt-4 sm:pt-0">
-          <a
-            href="https://github.com/SylvesterOgaOgaji/local-language"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs font-bold transition-all hover:scale-[1.02] shadow-sm focus:ring-2 focus:ring-emerald-400 w-full sm:w-auto justify-center"
-          >
-            <GithubIcon className="w-4 h-4 text-amber-300" />
-            <span>GitHub Repository</span>
-          </a>
-          <div className="flex items-center gap-3 text-[11px] text-emerald-300/80 font-medium">
+        {/* Action Controls & Badges */}
+        <div className="flex flex-col items-center lg:items-end gap-3 shrink-0 w-full lg:w-auto border-t lg:border-t-0 border-white/10 pt-4 lg:pt-0">
+          <div className="flex flex-wrap items-center justify-center lg:justify-end gap-2.5 w-full">
+            <button
+              type="button"
+              onClick={handleCopyLink}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-md active:scale-95 focus:ring-2 focus:ring-emerald-400"
+              title="Copy portfolio link to clipboard"
+            >
+              {copied ? <Check className="w-4 h-4 text-white" /> : <Copy className="w-4 h-4 text-amber-300" />}
+              <span>{copied ? 'Link Copied to Clipboard!' : 'Copy Live Portfolio Link'}</span>
+            </button>
+
+            <a
+              href="https://github.com/SylvesterOgaOgaji/local-language"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs font-bold transition-all shadow-sm focus:ring-2 focus:ring-emerald-400"
+            >
+              <GithubIcon className="w-4 h-4 text-amber-300" />
+              <span>GitHub Repository</span>
+              <ExternalLink className="w-3 h-3 text-slate-400" />
+            </a>
+          </div>
+
+          <div className="flex items-center gap-3 text-[11px] text-emerald-300/90 font-medium">
             <span className="flex items-center gap-1">
-              <CheckCircle2 className="w-3 h-3 text-emerald-400" /> Cloudflare Deployed
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Cloudflare Live
             </span>
             <span>&bull;</span>
             <span className="flex items-center gap-1">
-              <Globe className="w-3 h-3 text-amber-300" /> 6 Nigerian Languages
+              <Globe className="w-3.5 h-3.5 text-amber-300" /> 6 Nigerian Languages
             </span>
           </div>
         </div>

@@ -6,6 +6,7 @@ import { FounderBanner } from './components/FounderBanner';
 import { LessonCard } from './components/LessonCard';
 import { AssessmentQuiz } from './components/AssessmentQuiz';
 import { CompletionCertificate } from './components/CompletionCertificate';
+import { LanguageShowcaseMatrix } from './components/LanguageShowcaseMatrix';
 import { 
   ShieldCheck, 
   BookOpen, 
@@ -179,6 +180,9 @@ export const App: React.FC = () => {
                 </button>
               </div>
             </div>
+
+            {/* Language Showcase Matrix for Reviewers */}
+            <LanguageShowcaseMatrix />
           </section>
         )}
 
