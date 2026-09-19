@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://impactlearn-nigeria.pages.dev/sitemap.xml
+Sitemap: https://impactlearn-nigeria.slyokoh.workers.dev/sitemap.xml

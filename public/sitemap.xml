@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://impactlearn-nigeria.pages.dev/</loc>
+    <loc>https://impactlearn-nigeria.slyokoh.workers.dev/</loc>
     <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://impactlearn-nigeria.pages.dev/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="ha" href="https://impactlearn-nigeria.pages.dev/?lang=ha" />
-    <xhtml:link rel="alternate" hreflang="yo" href="https://impactlearn-nigeria.pages.dev/?lang=yo" />
-    <xhtml:link rel="alternate" hreflang="ig" href="https://impactlearn-nigeria.pages.dev/?lang=ig" />
-    <xhtml:link rel="alternate" hreflang="tiv" href="https://impactlearn-nigeria.pages.dev/?lang=tiv" />
-    <xhtml:link rel="alternate" hreflang="ikd" href="https://impactlearn-nigeria.pages.dev/?lang=ikd" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://impactlearn-nigeria.slyokoh.workers.dev/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://impactlearn-nigeria.slyokoh.workers.dev/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="ha" href="https://impactlearn-nigeria.slyokoh.workers.dev/?lang=ha" />
+    <xhtml:link rel="alternate" hreflang="yo" href="https://impactlearn-nigeria.slyokoh.workers.dev/?lang=yo" />
+    <xhtml:link rel="alternate" hreflang="ig" href="https://impactlearn-nigeria.slyokoh.workers.dev/?lang=ig" />
+    <xhtml:link rel="alternate" hreflang="tiv" href="https://impactlearn-nigeria.slyokoh.workers.dev/?lang=tiv" />
+    <xhtml:link rel="alternate" hreflang="ikd" href="https://impactlearn-nigeria.slyokoh.workers.dev/?lang=ikd" />
   </url>
 </urlset>

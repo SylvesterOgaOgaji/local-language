@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#052e16" />
+      <stop offset="50%" stop-color="#021c0e" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="100%" stop-color="#eab308" />
+    </linearGradient>
+    <linearGradient id="green" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4ade80" />
+      <stop offset="100%" stop-color="#16a34a" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)" />
+
+  <!-- Subtle grid lines / glow -->
+  <circle cx="1000" cy="150" r="350" fill="#22c55e" opacity="0.12" filter="blur(60px)" />
+  <circle cx="200" cy="500" r="300" fill="#eab308" opacity="0.1" filter="blur(60px)" />
+
+  <!-- Flag stripes -->
+  <rect x="0" y="0" width="16" height="630" fill="#008751" />
+  <rect x="16" y="0" width="16" height="630" fill="#FFFFFF" />
+  <rect x="32" y="0" width="16" height="630" fill="#008751" />
+
+  <!-- Container -->
+  <g transform="translate(100, 80)">
+    <!-- Brand Badge -->
+    <rect x="0" y="0" width="380" height="44" rx="22" fill="#14532d" stroke="#22c55e" stroke-width="1.5" />
+    <text x="25" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#86efac" letter-spacing="1.5">
+      JV IMPACTVR INITIATIVE LTD/GTE
+    </text>
+
+    <!-- Main Title -->
+    <text x="0" y="125" font-family="system-ui, -apple-system, sans-serif" font-size="54" font-weight="900" fill="#ffffff" letter-spacing="-1">
+      Impact<tspan fill="#4ade80">Learn</tspan> Nigeria 🇳🇬
+    </text>
+
+    <!-- Subtitle -->
+    <text x="0" y="175" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="700" fill="url(#gold)">
+      Multilingual Vocational Skills &amp; Cyber Safety Platform
+    </text>
+
+    <!-- Description -->
+    <text x="0" y="225" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="400" fill="#cbd5e1">
+      Accessible, mobile-first micro-learning delivered in 6 Nigerian languages:
+    </text>
+
+    <!-- 6 Languages Pills -->
+    <g transform="translate(0, 260)">
+      <rect x="0" y="0" width="140" height="42" rx="12" fill="#1e293b" stroke="#334155" />
+      <text x="70" y="26" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#f8fafc" text-anchor="middle">English</text>
+
+      <rect x="155" y="0" width="140" height="42" rx="12" fill="#1e293b" stroke="#334155" />
+      <text x="225" y="26" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#f8fafc" text-anchor="middle">Hausa</text>
+
+      <rect x="310" y="0" width="140" height="42" rx="12" fill="#1e293b" stroke="#334155" />
+      <text x="380" y="26" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#f8fafc" text-anchor="middle">Yorùbá</text>
+
+      <rect x="465" y="0" width="140" height="42" rx="12" fill="#1e293b" stroke="#334155" />
+      <text x="535" y="26" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#f8fafc" text-anchor="middle">Igbo</text>
+
+      <rect x="620" y="0" width="140" height="42" rx="12" fill="#1e293b" stroke="#334155" />
+      <text x="690" y="26" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#f8fafc" text-anchor="middle">Tiv</text>
+
+      <rect x="775" y="0" width="165" height="42" rx="12" fill="#1e293b" stroke="#334155" />
+      <text x="857" y="26" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#f8fafc" text-anchor="middle">Ikede (Igede)</text>
+    </g>
+
+    <!-- Founder Footer Bar -->
+    <g transform="translate(0, 350)">
+      <line x1="0" y1="0" x2="980" y2="0" stroke="#334155" stroke-width="1" />
+      <text x="0" y="40" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#ffffff">
+        Lead &amp; Founder: <tspan fill="#facc15">Sylvester Oga Ogaji</tspan>
+      </text>
+      <text x="600" y="40" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#94a3b8" text-anchor="start">
+        🌐 impactlearn-nigeria.slyokoh.workers.dev
+      </text>
+    </g>
+  </g>
+</svg>

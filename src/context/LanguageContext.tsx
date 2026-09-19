@@ -136,7 +136,14 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   useEffect(() => {
     document.documentElement.lang = currentLanguage;
-  }, [currentLanguage]);
+    document.title = `${course.title} | ImpactLearn Nigeria (${languageInfo.nativeName})`;
+
+    // Update meta description
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute('content', `${course.title}: ${course.subtitle}. Accessible vocational learning by JV ImpactVR Initiative Ltd/Gte.`);
+    }
+  }, [currentLanguage, course.title, course.subtitle, languageInfo.nativeName]);
 
   return (
     <LanguageContext.Provider

@@ -7,6 +7,7 @@ import { LessonCard } from './components/LessonCard';
 import { AssessmentQuiz } from './components/AssessmentQuiz';
 import { CompletionCertificate } from './components/CompletionCertificate';
 import { LanguageShowcaseMatrix } from './components/LanguageShowcaseMatrix';
+import { FaqSection } from './components/FaqSection';
 import { 
   ShieldCheck, 
   BookOpen, 
@@ -183,6 +184,9 @@ export const App: React.FC = () => {
 
             {/* Language Showcase Matrix for Reviewers */}
             <LanguageShowcaseMatrix />
+
+            {/* Comprehensive SEO FAQ Section */}
+            <FaqSection />
           </section>
         )}
 
