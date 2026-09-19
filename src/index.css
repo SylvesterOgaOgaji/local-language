@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-main: #f8fafc;
+    --text-main: #0f172a;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+
+  /* High-Contrast Mode */
+  html.contrast-high {
+    filter: contrast(125%);
+    --bg-main: #000000;
+    --text-main: #ffffff;
+  }
+  html.contrast-high body {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+  }
+  html.contrast-high .bg-white,
+  html.contrast-high .bg-slate-50,
+  html.contrast-high .bg-slate-100 {
+    background-color: #0a0a0a !important;
+    border-color: #facc15 !important;
+    color: #ffffff !important;
+  }
+  html.contrast-high button,
+  html.contrast-high a,
+  html.contrast-high input {
+    outline: 2px solid #facc15 !important;
+  }
+
+  /* Warm Sepia Reading Mode */
+  html.contrast-sepia {
+    --bg-main: #fbf0d9;
+    --text-main: #433422;
+  }
+  html.contrast-sepia body {
+    background-color: #fbf0d9 !important;
+    color: #433422 !important;
+  }
+  html.contrast-sepia .bg-white,
+  html.contrast-sepia .bg-slate-50 {
+    background-color: #f4e4c1 !important;
+    border-color: #d6c096 !important;
+    color: #382816 !important;
+  }
+
+  /* Text Scaling Classes */
+  html.text-scale-large {
+    font-size: 115%;
+  }
+  html.text-scale-xlarge {
+    font-size: 130%;
+  }
+
+  /* Reduced Cognitive Density Mode */
+  html.mode-simplified .bg-gradient-to-br,
+  html.mode-simplified .bg-gradient-to-r {
+    background-image: none !important;
+  }
+}
+
+/* Accessible visible focus states */
+*:focus-visible {
+  outline: 3px solid #008751 !important;
+  outline-offset: 2px !important;
+}
+
+/* Print formatting for Certificate */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-certificate,
+  #printable-certificate * {
+    visibility: visible;
+  }
+  #printable-certificate {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 2cm;
+    border: 4px solid #008751;
+    box-shadow: none;
+  }
+  .no-print {
+    display: none !important;
+  }
+}

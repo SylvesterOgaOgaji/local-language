@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>ImpactLearn Nigeria | Multilingual Vocational Skills & Digital Safety</title>
+    <meta name="title" content="ImpactLearn Nigeria | Multilingual Vocational Skills & Digital Safety" />
+    <meta name="description" content="Accessible, mobile-first vocational micro-learning in English, Hausa, Yoruba, Igbo, Tiv, and Ikede. Built by JV ImpactVR Initiative Ltd/Gte, Nigeria." />
+    <meta name="keywords" content="vocational skills, Nigeria, cyber safety, mobile banking safety, Hausa, Yoruba, Igbo, Tiv, Ikede, digital literacy, JV ImpactVR Initiative, Sylvester Oga Ogaji, accessible learning" />
+    <meta name="author" content="Sylvester Oga Ogaji, JV ImpactVR Initiative Ltd/Gte" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#008751" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://impactlearn-nigeria.pages.dev/" />
+    <meta property="og:title" content="ImpactLearn Nigeria - Multilingual Vocational Skills" />
+    <meta property="og:description" content="Practical digital smartphone and internet safety training in English and Nigerian indigenous languages (Hausa, Yoruba, Igbo, Tiv, Ikede)." />
+    <meta property="og:image" content="/og-preview.png" />
+    <meta property="og:locale" content="en_NG" />
+    <meta property="og:site_name" content="ImpactLearn Nigeria" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://impactlearn-nigeria.pages.dev/" />
+    <meta property="twitter:title" content="ImpactLearn Nigeria - Multilingual Vocational Skills" />
+    <meta property="twitter:description" content="Practical digital smartphone and internet safety training in Nigerian indigenous languages." />
+    <meta property="twitter:image" content="/og-preview.png" />
+
+    <!-- PWA & Mobile Web App -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="ImpactLearn" />
+
+    <!-- Structured Data (JSON-LD) for SEO and Course Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "EducationalOrganization",
+          "@id": "https://impactlearn-nigeria.pages.dev/#organization",
+          "name": "JV ImpactVR Initiative Ltd/Gte",
+          "alternateName": "ImpactVR Nigeria",
+          "url": "https://impactlearn-nigeria.pages.dev",
+          "logo": "https://impactlearn-nigeria.pages.dev/favicon.svg",
+          "founder": {
+            "@type": "Person",
+            "name": "Sylvester Oga Ogaji",
+            "jobTitle": "Lead Innovator & Founder"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "NG"
+          },
+          "description": "Pioneering accessible, immersive, and multilingual vocational learning solutions in Nigeria."
+        },
+        {
+          "@type": "Course",
+          "@id": "https://impactlearn-nigeria.pages.dev/#course",
+          "name": "Basic Smartphone and Internet Safety",
+          "description": "Essential vocational digital safety skills covering strong password creation, phishing and scam detection, mobile money safety in Naira, and secure public Wi-Fi habits in Nigerian languages.",
+          "provider": {
+            "@id": "https://impactlearn-nigeria.pages.dev/#organization"
+          },
+          "inLanguage": ["en", "ha", "yo", "ig", "tiv", "ikd"],
+          "educationalLevel": "Beginner / Vocational",
+          "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": "Online",
+            "isAccessibleForFree": true
+          }
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body class="min-h-screen bg-slate-50 text-slate-900 antialiased selection:bg-emerald-200 selection:text-emerald-900">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

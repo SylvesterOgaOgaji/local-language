@@ -1,0 +1,17 @@
+{
+  "name": "ImpactLearn Nigeria - Multilingual Vocational Skills",
+  "short_name": "ImpactLearn",
+  "description": "Accessible vocational micro-learning platform in Nigerian indigenous languages and English.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#008751",
+  "theme_color": "#008751",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
