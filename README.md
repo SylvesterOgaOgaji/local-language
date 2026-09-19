@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg)](LICENSE)
 [![Organization](https://img.shields.io/badge/Organization-JV%20ImpactVR%20Initiative%20Ltd%2FGte-008751.svg)](https://github.com/SylvesterOgaOgaji/local-language)
 [![Founder](https://img.shields.io/badge/Founder%20%26%20Lead-Sylvester%20Oga%20Ogaji-amber.svg)](https://github.com/SylvesterOgaOgaji/local-language)
-[![Deployment](https://img.shields.io/badge/Cloudflare%20Pages-Ready-orange.svg)](https://impactlearn-nigeria.pages.dev)
+[![Live Site](https://img.shields.io/badge/Live%20Site-impactlearn--nigeria.slyokoh.workers.dev-success.svg)](https://impactlearn-nigeria.slyokoh.workers.dev)
 [![WCAG](https://img.shields.io/badge/Accessibility-WCAG%202.1%20AA%2FAAA-blue.svg)](#accessibility-features)
 
 ---
