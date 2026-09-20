@@ -25,81 +25,75 @@ export const FounderBanner: React.FC = () => {
   return (
     <section 
       aria-labelledby="founder-section-title"
-      className="bg-gradient-to-r from-emerald-950 via-slate-900 to-emerald-900 text-white rounded-3xl p-6 md:p-8 shadow-2xl border border-emerald-500/30 relative overflow-hidden my-6"
+      className="relative my-6 overflow-hidden rounded-2xl border border-zinc-200/90 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900 md:p-8"
     >
-      {/* Decorative background aura */}
-      <div className="absolute top-0 right-0 -mt-10 -mr-10 w-72 h-72 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-72 h-72 bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="relative z-10 flex flex-col lg:flex-row items-center gap-6 justify-between">
+      <div className="flex flex-col lg:flex-row items-center gap-6 justify-between">
         {/* Founder Profile & Credentials */}
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left">
           {/* Avatar / Portrait treatment */}
-          <div className="relative group shrink-0">
-            <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-gradient-to-br from-emerald-400 via-amber-300 to-emerald-600 p-1 shadow-xl ring-4 ring-white/10">
-              <div className="w-full h-full rounded-[14px] bg-slate-900 flex flex-col items-center justify-center text-white overflow-hidden relative">
-                <span className="text-2xl md:text-3xl font-black tracking-wider text-amber-300">
-                  SO
-                </span>
-                <span className="text-[9px] font-bold text-emerald-400 uppercase tracking-widest mt-0.5">
-                  Nigeria 🇳🇬
-                </span>
-              </div>
+          <div className="relative shrink-0">
+            <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-zinc-900 dark:bg-zinc-100 flex flex-col items-center justify-center text-white dark:text-zinc-900 shadow-md">
+              <span className="text-xl md:text-2xl font-bold tracking-tight">
+                SO
+              </span>
+              <span className="text-[10px] font-semibold text-zinc-400 dark:text-zinc-600">
+                Nigeria 🇳🇬
+              </span>
             </div>
-            <div className="absolute -bottom-1 -right-1 bg-emerald-500 text-white rounded-full p-1 shadow-md border-2 border-slate-900" title="Project Owner & Lead">
+            <div className="absolute -bottom-1 -right-1 bg-emerald-600 text-white rounded-full p-1 shadow-sm" title="Project Owner & Lead">
               <ShieldCheck className="w-3.5 h-3.5" aria-hidden="true" />
             </div>
           </div>
 
-          <div className="space-y-1.5">
-            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold">
-              <Award className="w-3.5 h-3.5 text-amber-300" aria-hidden="true" />
-              <span>Project Lead & Owner &bull; Portfolio Work Sample</span>
+          <div className="space-y-1">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-xs font-semibold">
+              <Award className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
+              <span>Project Lead & Owner &bull; Official Work Sample</span>
             </div>
-            <h2 id="founder-section-title" className="text-2xl md:text-3xl font-black text-white tracking-tight">
+            <h2 id="founder-section-title" className="text-xl md:text-2xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
               {t('founderName')}
             </h2>
-            <p className="text-xs md:text-sm text-emerald-200/90 font-medium">
-              {t('founderTitle')} &bull; <strong className="text-white">{t('organizationName')}</strong>
+            <p className="text-xs md:text-sm text-zinc-600 dark:text-zinc-400 font-medium">
+              {t('founderTitle')} &bull; <strong className="text-zinc-900 dark:text-zinc-200">{t('organizationName')}</strong>
             </p>
-            <p className="text-xs md:text-sm text-slate-300 max-w-xl leading-relaxed pt-1">
-              Pioneering inclusive digital literacy and vocational empowerment across Nigerian communities through accessible, indigenous language technologies.
+            <p className="text-xs md:text-sm text-zinc-500 dark:text-zinc-400 max-w-xl leading-relaxed pt-0.5">
+              Pioneering inclusive digital safety, vocational empowerment, and practical security across Nigerian communities through accessible, indigenous language technologies.
             </p>
           </div>
         </div>
 
         {/* Action Controls & Badges */}
-        <div className="flex flex-col items-center lg:items-end gap-3 shrink-0 w-full lg:w-auto border-t lg:border-t-0 border-white/10 pt-4 lg:pt-0">
+        <div className="flex flex-col items-center lg:items-end gap-3 shrink-0 w-full lg:w-auto border-t lg:border-t-0 border-zinc-100 dark:border-zinc-800 pt-4 lg:pt-0">
           <div className="flex flex-wrap items-center justify-center lg:justify-end gap-2.5 w-full">
             <button
               type="button"
               onClick={handleCopyLink}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-md active:scale-95 focus:ring-2 focus:ring-emerald-400"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200 text-xs font-semibold transition-all shadow-sm active:scale-95"
               title="Copy portfolio link to clipboard"
             >
-              {copied ? <Check className="w-4 h-4 text-white" /> : <Copy className="w-4 h-4 text-amber-300" />}
-              <span>{copied ? 'Link Copied to Clipboard!' : 'Copy Live Portfolio Link'}</span>
+              {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+              <span>{copied ? 'Link Copied!' : 'Copy Live Link'}</span>
             </button>
 
             <a
               href="https://github.com/SylvesterOgaOgaji/local-language"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs font-bold transition-all shadow-sm focus:ring-2 focus:ring-emerald-400"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white hover:bg-zinc-50 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700 text-xs font-semibold transition-all shadow-sm"
             >
-              <GithubIcon className="w-4 h-4 text-amber-300" />
-              <span>GitHub Repository</span>
-              <ExternalLink className="w-3 h-3 text-slate-400" />
+              <GithubIcon className="w-3.5 h-3.5" />
+              <span>GitHub Repo</span>
+              <ExternalLink className="w-3 h-3 text-zinc-400" />
             </a>
           </div>
 
-          <div className="flex items-center gap-3 text-[11px] text-emerald-300/90 font-medium">
+          <div className="flex items-center gap-3 text-[11px] text-zinc-500 dark:text-zinc-400 font-medium">
             <span className="flex items-center gap-1">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Cloudflare Live
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> Cloudflare Deployed
             </span>
             <span>&bull;</span>
             <span className="flex items-center gap-1">
-              <Globe className="w-3.5 h-3.5 text-amber-300" /> 6 Nigerian Languages
+              <Globe className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" /> 6 Nigerian Languages
             </span>
           </div>
         </div>

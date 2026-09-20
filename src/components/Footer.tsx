@@ -12,77 +12,77 @@ export const Footer: React.FC = () => {
   const { t, availableLanguages } = useLanguage();
 
   return (
-    <footer className="bg-slate-900 text-slate-300 border-t border-slate-800 mt-16 no-print">
+    <footer className="border-t border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950 text-zinc-600 dark:text-zinc-400 mt-16 no-print">
       <div className="container mx-auto px-4 py-12 space-y-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand & Mission */}
           <div className="space-y-3">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white">
-                <Shield className="w-5 h-5 text-amber-300" />
+            <div className="flex items-center gap-2">
+              <div className="w-7 h-7 rounded-lg bg-zinc-900 dark:bg-zinc-100 flex items-center justify-center text-white dark:text-zinc-900 font-bold">
+                <Shield className="w-4 h-4" />
               </div>
-              <span className="font-extrabold text-lg text-white">
-                Impact<span className="text-emerald-400">Learn</span> Nigeria
+              <span className="font-bold text-base text-zinc-900 dark:text-zinc-100">
+                ImpactLearn Nigeria
               </span>
             </div>
-            <p className="text-xs text-slate-400 leading-relaxed">
-              An accessible vocational learning and cyber hygiene platform by <strong className="text-slate-200">JV ImpactVR Initiative Ltd/Gte</strong>. Designed to deliver practical digital skills across Nigerian communities regardless of literacy or language barriers.
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+              An accessible vocational learning and cyber hygiene platform by <strong className="text-zinc-800 dark:text-zinc-200">JV ImpactVR Initiative Ltd/Gte</strong>. Designed to deliver practical digital skills across Nigerian communities regardless of literacy or language barriers.
             </p>
-            <div className="pt-2 text-xs text-emerald-400 font-semibold flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+            <div className="pt-1 text-xs text-zinc-800 dark:text-zinc-200 font-medium flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
               <span>Project Owner: {t('founderName')}</span>
             </div>
           </div>
 
           {/* Languages & Regional Coverage */}
           <div className="space-y-3">
-            <h4 className="font-bold text-sm text-white uppercase tracking-wider flex items-center gap-2">
-              <Globe className="w-4 h-4 text-emerald-400" />
+            <h4 className="font-semibold text-xs text-zinc-900 dark:text-zinc-100 uppercase tracking-wider flex items-center gap-1.5">
+              <Globe className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
               <span>Supported Nigerian Languages</span>
             </h4>
             <div className="grid grid-cols-2 gap-2 text-xs">
               {availableLanguages.map((l) => (
-                <div key={l.code} className="flex items-center gap-1.5 text-slate-400">
+                <div key={l.code} className="flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                  <span className="font-medium text-slate-300">{l.nativeName}</span>
+                  <span className="font-medium text-zinc-800 dark:text-zinc-200">{l.nativeName}</span>
                 </div>
               ))}
             </div>
-            <p className="text-[11px] text-slate-500 pt-1">
+            <p className="text-[11px] text-zinc-400 dark:text-zinc-500 pt-1">
               * Hausa, Yoruba, Igbo verified. Tiv and Ikede (Igede) marked for ongoing community review.
             </p>
           </div>
 
           {/* Verification & Tech Stack */}
           <div className="space-y-3">
-            <h4 className="font-bold text-sm text-white uppercase tracking-wider">
+            <h4 className="font-semibold text-xs text-zinc-900 dark:text-zinc-100 uppercase tracking-wider">
               Deployment & Repository
             </h4>
-            <ul className="space-y-2 text-xs text-slate-400">
+            <ul className="space-y-2 text-xs text-zinc-500 dark:text-zinc-400">
               <li>
                 <a
                   href="https://github.com/SylvesterOgaOgaji/local-language"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors font-semibold"
+                  className="inline-flex items-center gap-1.5 text-zinc-800 hover:text-zinc-950 dark:text-zinc-200 dark:hover:text-white font-medium"
                 >
-                  <GithubIcon className="w-4 h-4" />
+                  <GithubIcon className="w-3.5 h-3.5" />
                   <span>GitHub: SylvesterOgaOgaji/local-language</span>
                 </a>
               </li>
               <li className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>Production Target: Cloudflare Pages</span>
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Production Target: Cloudflare Pages / Workers</span>
               </li>
-              <li>Accessibility: WCAG 2.1 AA/AAA Compliant</li>
+              <li>Accessibility: WCAG 2.1 AA/AAA Standards</li>
               <li>Stack: Vite &bull; React &bull; TypeScript &bull; Tailwind CSS</li>
             </ul>
           </div>
         </div>
 
         {/* Translation Disclaimer Notice */}
-        <div className="bg-slate-950/80 rounded-2xl p-4 border border-slate-800/80 text-[11px] text-slate-400 leading-relaxed space-y-1">
-          <p className="font-bold text-slate-300">
+        <div className="rounded-xl border border-zinc-200/80 bg-zinc-50/70 p-4 dark:border-zinc-800 dark:bg-zinc-900/50 text-[11px] text-zinc-500 dark:text-zinc-400 leading-relaxed space-y-1">
+          <p className="font-semibold text-zinc-800 dark:text-zinc-200">
             Community Translation & Accuracy Protocol:
           </p>
           <p>
@@ -91,12 +91,12 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Copyright Bar */}
-        <div className="border-t border-slate-800 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div className="border-t border-zinc-100 dark:border-zinc-800/80 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-zinc-400 dark:text-zinc-500">
           <p>
             &copy; {new Date().getFullYear()} JV ImpactVR Initiative Ltd/Gte, Nigeria. All rights reserved.
           </p>
           <p className="flex items-center gap-1">
-            Built with <Heart className="w-3.5 h-3.5 text-rose-500 fill-current" /> for Nigerian learners by <strong className="text-slate-300">Sylvester Oga Ogaji</strong>.
+            Built with <Heart className="w-3 h-3 text-rose-500 fill-current" /> for Nigerian learners by <strong className="text-zinc-700 dark:text-zinc-300">Sylvester Oga Ogaji</strong>.
           </p>
         </div>
       </div>

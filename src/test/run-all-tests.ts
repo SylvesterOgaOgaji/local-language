@@ -2,6 +2,8 @@ import assert from 'node:assert';
 import { SUPPORTED_LANGUAGES } from '../data/languages';
 import { UI_TRANSLATIONS } from '../data/translations';
 import { COURSE_CONTENT } from '../data/courseData';
+import { NIGERIAN_BANK_USSD_CODES } from '../data/ussdEmergencyCodes';
+import { INTERACTIVE_SCAM_SCENARIOS } from '../data/interactiveScenarios';
 import { LanguageCode } from '../types';
 
 console.log('\n======================================================');
@@ -35,13 +37,13 @@ assert.strictEqual(enUI.founderName, 'Sylvester Oga Ogaji');
 assert(enUI.startCourse && enUI.startCourse.length > 0);
 console.log('✔ Test Suite 3: Base UI translations and branding keys verified');
 
-// Test 4: Course Structure & Content
+// Test 4: Course Structure & Content (Expanded 5 Core Modules)
 const enCourse = COURSE_CONTENT.en;
 assert(enCourse, 'English course must be present');
-assert(enCourse.lessons && enCourse.lessons.length === 3, 'Course must have exactly 3 lessons');
+assert(enCourse.lessons && enCourse.lessons.length === 5, 'Course must have 5 comprehensive modules');
 assert(enCourse.learningObjectives && enCourse.learningObjectives.length >= 4, 'Must have at least 4 learning objectives');
 assert(enCourse.assessment && enCourse.assessment.questions.length === 5, 'Assessment must have exactly 5 questions');
-console.log('✔ Test Suite 4: Course lessons, learning objectives, and 5 assessment questions verified');
+console.log('✔ Test Suite 4: Course 5 modules, learning objectives, and 5 assessment questions verified');
 
 // Test 5: Assessment Scoring & Logic
 const questions = enCourse.assessment!.questions;
@@ -63,6 +65,11 @@ const fallbackKey = getTranslationWithFallback('tiv', 'issuedBy');
 assert(fallbackKey.includes('JV ImpactVR Initiative Ltd/Gte'));
 console.log('✔ Test Suite 6: Multilingual fallback resolution verified');
 
+// Test 7: Nigerian Bank USSD Directory & Scam Scenarios
+assert(NIGERIAN_BANK_USSD_CODES.length >= 10, 'Must have at least 10 major Nigerian bank USSD freeze codes');
+assert(INTERACTIVE_SCAM_SCENARIOS.length >= 4, 'Must have at least 4 interactive scam simulation scenarios');
+console.log('✔ Test Suite 7: Bank USSD Directory and Scam Simulator data verified');
+
 console.log('\n------------------------------------------------------');
-console.log('✔ ALL 6/6 AUTOMATED TEST SUITES PASSED SUCCESSFULLY');
+console.log('✔ ALL 7/7 AUTOMATED TEST SUITES PASSED SUCCESSFULLY');
 console.log('------------------------------------------------------\n');

@@ -4,12 +4,13 @@ export type TranslationStatus = 'verified' | 'review_required';
 
 export interface LanguageInfo {
   code: LanguageCode;
-  name: string; // English name
-  nativeName: string; // Native name
-  region: string; // Region in Nigeria
-  speakers: string; // Approximate speakers/context
+  name: string;
+  nativeName: string;
+  region: string;
+  speakers: string;
   status: TranslationStatus;
   flagEmoji?: string;
+  linguisticNotes?: string;
 }
 
 export type TextSize = 'normal' | 'large' | 'xlarge';
@@ -18,8 +19,8 @@ export type ContrastMode = 'default' | 'high-contrast' | 'sepia';
 export interface AccessibilitySettings {
   textSize: TextSize;
   contrastMode: ContrastMode;
-  simplifiedMode: boolean; // low cognitive density
-  speechRate: number; // 0.8, 1.0, 1.2
+  simplifiedMode: boolean;
+  speechRate: number;
 }
 
 export interface PracticalExample {
@@ -39,11 +40,13 @@ export interface LessonSection {
   keyTakeaway: string;
   practicalExample?: PracticalExample;
   audioNarrationText?: string;
+  checklist?: string[];
 }
 
 export interface Lesson {
   id: number;
   slug: string;
+  moduleNumber: number;
   title: string;
   subtitle: string;
   durationMinutes: number;
@@ -80,6 +83,25 @@ export interface Course {
     passingScorePercentage: number;
     questions: QuizQuestion[];
   };
+}
+
+export interface BankUssdCode {
+  bankName: string;
+  shortName: string;
+  generalUssd: string;
+  blockAccountUssd: string;
+  blockCardUssd?: string;
+  customerCare: string;
+}
+
+export interface InteractiveScamScenario {
+  id: string;
+  sender: string;
+  channel: 'SMS' | 'WhatsApp' | 'Email' | 'Phone Call';
+  messageText: string;
+  isScam: boolean;
+  indicators: string[];
+  explanation: string;
 }
 
 export interface UIStrings {

@@ -8,6 +8,9 @@ import { AssessmentQuiz } from './components/AssessmentQuiz';
 import { CompletionCertificate } from './components/CompletionCertificate';
 import { LanguageShowcaseMatrix } from './components/LanguageShowcaseMatrix';
 import { FaqSection } from './components/FaqSection';
+import { ScamSimulator } from './components/ScamSimulator';
+import { PinStrengthChecker } from './components/PinStrengthChecker';
+import { UssdDirectoryModal } from './components/UssdDirectoryModal';
 import { 
   ShieldCheck, 
   BookOpen, 
@@ -17,7 +20,10 @@ import {
   CheckCircle2, 
   ArrowRight,
   RotateCcw,
-  Sparkles
+  Sparkles,
+  PhoneCall,
+  Flame,
+  Check
 } from 'lucide-react';
 
 type ViewMode = 'welcome' | 'lesson' | 'quiz' | 'certificate';
@@ -27,19 +33,20 @@ export const App: React.FC = () => {
   const [viewMode, setViewMode] = useState<ViewMode>('welcome');
   const [currentLessonIndex, setCurrentLessonIndex] = useState<number>(0);
   const [quizScore, setQuizScore] = useState<number | null>(null);
+  const [isUssdModalOpen, setIsUssdModalOpen] = useState(false);
+  const [completedLessons, setCompletedLessons] = useState<number[]>([]);
 
   // Keyboard navigation support
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Don't intercept when typing in text inputs
       if (['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement)?.tagName)) {
         return;
       }
       if (viewMode === 'lesson') {
         if (e.key === 'ArrowRight' && currentLessonIndex < course.lessons.length - 1) {
-          setCurrentLessonIndex(prev => prev + 1);
+          handleNextLesson();
         } else if (e.key === 'ArrowLeft' && currentLessonIndex > 0) {
-          setCurrentLessonIndex(prev => prev - 1);
+          handlePreviousLesson();
         }
       }
     };
@@ -47,15 +54,19 @@ export const App: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [viewMode, currentLessonIndex, course.lessons.length]);
 
-  const handleStartCourse = () => {
-    setCurrentLessonIndex(0);
+  const handleStartCourse = (startIndex = 0) => {
+    setCurrentLessonIndex(startIndex);
     setViewMode('lesson');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleNextLesson = () => {
+    if (!completedLessons.includes(currentLessonIndex)) {
+      setCompletedLessons((prev) => [...prev, currentLessonIndex]);
+    }
+
     if (currentLessonIndex < course.lessons.length - 1) {
-      setCurrentLessonIndex(prev => prev + 1);
+      setCurrentLessonIndex((prev) => prev + 1);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       setViewMode('quiz');
@@ -65,7 +76,7 @@ export const App: React.FC = () => {
 
   const handlePreviousLesson = () => {
     if (currentLessonIndex > 0) {
-      setCurrentLessonIndex(prev => prev - 1);
+      setCurrentLessonIndex((prev) => prev - 1);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       setViewMode('welcome');
@@ -89,8 +100,27 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
+    <div className="min-h-screen flex flex-col bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors font-sans antialiased">
       <Header />
+
+      {/* Quick Emergency Dial Bar */}
+      <div className="bg-zinc-900 text-zinc-200 px-4 py-2 text-xs flex items-center justify-between dark:bg-zinc-900 dark:border-b dark:border-zinc-800">
+        <div className="container mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="font-medium">
+              Stolen Phone or ATM Card Emergency in Nigeria?
+            </span>
+          </div>
+          <button
+            onClick={() => setIsUssdModalOpen(true)}
+            className="inline-flex items-center gap-1.5 rounded-lg bg-zinc-800 px-3 py-1 font-semibold text-zinc-100 hover:bg-zinc-700 transition"
+          >
+            <PhoneCall className="h-3 w-3 text-emerald-400" />
+            <span>Open Bank Freeze Codes</span>
+          </button>
+        </div>
+      </div>
 
       <main id="main-content" className="flex-1 container mx-auto px-4 py-6 max-w-4xl" tabIndex={-1}>
         {/* Founder & Project Ownership Highlight */}
@@ -100,62 +130,101 @@ export const App: React.FC = () => {
         {viewMode === 'welcome' && (
           <section className="space-y-8 animate-in fade-in duration-200" aria-labelledby="course-welcome-title">
             {/* Hero Card */}
-            <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl p-6 md:p-10 space-y-6">
+            <div className="rounded-2xl border border-zinc-200/90 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900 md:p-8 space-y-6">
               <div className="space-y-2">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-extrabold text-xs border border-emerald-300/60">
-                  <Sparkles className="w-3.5 h-3.5" />
+                <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 font-semibold text-xs border border-zinc-200 dark:border-zinc-700">
+                  <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                   <span>Vocational Micro-Course &bull; 6 Nigerian Languages</span>
                 </div>
-                <h2 id="course-welcome-title" className="text-2xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
+                <h2 id="course-welcome-title" className="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
                   {course.title}
                 </h2>
-                <p className="text-base md:text-lg text-slate-600 dark:text-slate-300 font-medium">
+                <p className="text-sm md:text-base text-zinc-600 dark:text-zinc-400 font-medium">
                   {course.subtitle}
                 </p>
               </div>
 
               {/* Meta stats */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-                <div className="flex items-center gap-3 bg-slate-50 dark:bg-slate-950 p-3.5 rounded-2xl border border-slate-100 dark:border-slate-800">
-                  <div className="p-2 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300">
-                    <Clock className="w-5 h-5" />
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+                <div className="flex items-center gap-3 bg-zinc-50 dark:bg-zinc-950/60 p-3.5 rounded-xl border border-zinc-200/70 dark:border-zinc-800">
+                  <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">
+                    <Clock className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-[11px] font-bold text-slate-400 block uppercase">Duration</span>
-                    <span className="text-xs md:text-sm font-extrabold text-slate-800 dark:text-slate-200">{course.durationTotal}</span>
+                    <span className="text-[10px] font-semibold text-zinc-400 block uppercase">Duration</span>
+                    <span className="text-xs md:text-sm font-bold text-zinc-800 dark:text-zinc-200">{course.durationTotal}</span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 bg-slate-50 dark:bg-slate-950 p-3.5 rounded-2xl border border-slate-100 dark:border-slate-800">
-                  <div className="p-2 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300">
-                    <BookOpen className="w-5 h-5" />
+                <div className="flex items-center gap-3 bg-zinc-50 dark:bg-zinc-950/60 p-3.5 rounded-xl border border-zinc-200/70 dark:border-zinc-800">
+                  <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">
+                    <BookOpen className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-[11px] font-bold text-slate-400 block uppercase">Lessons</span>
-                    <span className="text-xs md:text-sm font-extrabold text-slate-800 dark:text-slate-200">{course.lessons.length} Core Lessons</span>
+                    <span className="text-[10px] font-semibold text-zinc-400 block uppercase">Curriculum</span>
+                    <span className="text-xs md:text-sm font-bold text-zinc-800 dark:text-zinc-200">{course.lessons.length} Core Modules</span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 bg-slate-50 dark:bg-slate-950 p-3.5 rounded-2xl border border-slate-100 dark:border-slate-800">
-                  <div className="p-2 rounded-xl bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300">
-                    <Award className="w-5 h-5" />
+                <div className="flex items-center gap-3 bg-zinc-50 dark:bg-zinc-950/60 p-3.5 rounded-xl border border-zinc-200/70 dark:border-zinc-800">
+                  <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">
+                    <Award className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-[11px] font-bold text-slate-400 block uppercase">Outcome</span>
-                    <span className="text-xs md:text-sm font-extrabold text-slate-800 dark:text-slate-200">Verified Certificate</span>
+                    <span className="text-[10px] font-semibold text-zinc-400 block uppercase">Outcome</span>
+                    <span className="text-xs md:text-sm font-bold text-zinc-800 dark:text-zinc-200">Verified Certificate</span>
                   </div>
                 </div>
               </div>
 
+              {/* Module Directory Accordion / Grid */}
+              <div className="space-y-3 pt-2">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+                    Course Modules Overview
+                  </h3>
+                  <span className="text-xs text-zinc-500 font-medium">{course.lessons.length} Practical Modules</span>
+                </div>
+
+                <div className="space-y-2">
+                  {course.lessons.map((lesson, idx) => (
+                    <div
+                      key={lesson.id}
+                      onClick={() => handleStartCourse(idx)}
+                      className="group flex cursor-pointer items-center justify-between rounded-xl border border-zinc-200 bg-zinc-50/50 p-3.5 transition hover:border-zinc-400 hover:bg-white dark:border-zinc-800 dark:bg-zinc-950/40 dark:hover:border-zinc-700 dark:hover:bg-zinc-900"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-zinc-200/80 text-xs font-bold text-zinc-700 group-hover:bg-zinc-900 group-hover:text-white dark:bg-zinc-800 dark:text-zinc-300 dark:group-hover:bg-zinc-100 dark:group-hover:text-zinc-900 transition">
+                          {completedLessons.includes(idx) ? <Check className="h-3.5 w-3.5 text-emerald-500" /> : idx + 1}
+                        </div>
+                        <div>
+                          <h4 className="text-xs md:text-sm font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-950 dark:group-hover:text-white">
+                            {lesson.title}
+                          </h4>
+                          <p className="text-[11px] text-zinc-500 dark:text-zinc-400 line-clamp-1">
+                            {lesson.subtitle}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-2 text-xs text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100">
+                        <span>{lesson.durationMinutes}m</span>
+                        <ArrowRight className="h-3.5 w-3.5" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               {/* Learning Objectives */}
-              <div className="bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/80 rounded-2xl p-5 md:p-6 space-y-4">
-                <h3 className="text-sm md:text-base font-extrabold text-emerald-950 dark:text-emerald-200 flex items-center gap-2">
-                  <ShieldCheck className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+              <div className="rounded-xl border border-zinc-200 bg-zinc-50/80 p-5 dark:border-zinc-800 dark:bg-zinc-950/60 space-y-3">
+                <h3 className="text-xs md:text-sm font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                   <span>{t('objectivesTitle')}</span>
                 </h3>
-                <ul className="space-y-2.5">
+                <ul className="space-y-2">
                   {course.learningObjectives.map((obj, idx) => (
-                    <li key={idx} className="flex items-start gap-3 text-xs md:text-sm text-slate-800 dark:text-slate-200">
+                    <li key={idx} className="flex items-start gap-2.5 text-xs md:text-sm text-zinc-700 dark:text-zinc-300">
                       <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
                       <span>{obj}</span>
                     </li>
@@ -164,8 +233,8 @@ export const App: React.FC = () => {
               </div>
 
               {/* Target Audience Note */}
-              <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
-                <Users className="w-4 h-4 text-slate-400 shrink-0" />
+              <div className="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+                <Users className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
                 <span><strong>Target Audience:</strong> {course.targetAudience}</span>
               </div>
 
@@ -173,13 +242,29 @@ export const App: React.FC = () => {
               <div className="pt-2">
                 <button
                   type="button"
-                  onClick={handleStartCourse}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-base rounded-2xl shadow-xl hover:shadow-emerald-600/30 transition-all hover:scale-[1.02] active:scale-95 focus:ring-4 focus:ring-emerald-400 min-h-[52px]"
+                  onClick={() => handleStartCourse(0)}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3 bg-zinc-900 hover:bg-zinc-800 text-white dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200 font-semibold text-sm rounded-xl shadow-sm transition-all active:scale-95"
                 >
                   <span>{t('startCourse')}</span>
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
+            </div>
+
+            {/* Interactive Defense Labs Section */}
+            <div className="space-y-6">
+              <div className="flex items-center gap-2">
+                <Flame className="h-4 w-4 text-amber-500" />
+                <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
+                  Interactive Vocational Defense Labs
+                </h3>
+              </div>
+
+              {/* Scam Simulator */}
+              <ScamSimulator />
+
+              {/* PIN Strength Checker */}
+              <PinStrengthChecker />
             </div>
 
             {/* Language Showcase Matrix for Reviewers */}
@@ -193,17 +278,26 @@ export const App: React.FC = () => {
         {viewMode === 'lesson' && (
           <div className="space-y-6">
             {/* Navigation crumb */}
-            <div className="flex items-center justify-between gap-2 text-xs font-semibold text-slate-500">
+            <div className="flex items-center justify-between gap-2 text-xs font-semibold text-zinc-500">
               <button
                 type="button"
                 onClick={() => setViewMode('welcome')}
-                className="hover:text-slate-900 dark:hover:text-white underline"
+                className="hover:text-zinc-900 dark:hover:text-white underline"
               >
                 &larr; Course Overview
               </button>
-              <span>
-                Language: <strong className="text-emerald-600 dark:text-emerald-400 uppercase">{currentLanguage}</strong>
-              </span>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setIsUssdModalOpen(true)}
+                  className="text-xs text-emerald-600 dark:text-emerald-400 font-semibold hover:underline flex items-center gap-1"
+                >
+                  <PhoneCall className="h-3 w-3" />
+                  Bank Freeze Codes
+                </button>
+                <span>
+                  Language: <strong className="text-zinc-900 dark:text-zinc-100 uppercase">{currentLanguage}</strong>
+                </span>
+              </div>
             </div>
 
             <LessonCard
@@ -224,13 +318,13 @@ export const App: React.FC = () => {
 
         {viewMode === 'quiz' && (
           <div className="space-y-6">
-            <div className="flex items-center justify-between gap-2 text-xs font-semibold text-slate-500">
+            <div className="flex items-center justify-between gap-2 text-xs font-semibold text-zinc-500">
               <button
                 type="button"
                 onClick={() => setViewMode('lesson')}
-                className="hover:text-slate-900 dark:hover:text-white underline"
+                className="hover:text-zinc-900 dark:hover:text-white underline"
               >
-                &larr; Return to Lessons
+                &larr; Return to Modules
               </button>
               <span>Passing Requirement: {course.assessment.passingScorePercentage}%</span>
             </div>
@@ -244,11 +338,11 @@ export const App: React.FC = () => {
 
         {viewMode === 'certificate' && quizScore !== null && (
           <div className="space-y-6">
-            <div className="flex items-center justify-between gap-2 text-xs font-semibold text-slate-500">
+            <div className="flex items-center justify-between gap-2 text-xs font-semibold text-zinc-500">
               <button
                 type="button"
                 onClick={handleRestartCourse}
-                className="hover:text-slate-900 dark:hover:text-white underline inline-flex items-center gap-1"
+                className="hover:text-zinc-900 dark:hover:text-white underline inline-flex items-center gap-1"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Return to Course Start</span>
@@ -263,6 +357,12 @@ export const App: React.FC = () => {
           </div>
         )}
       </main>
+
+      {/* Emergency Bank USSD Freeze Modal */}
+      <UssdDirectoryModal
+        isOpen={isUssdModalOpen}
+        onClose={() => setIsUssdModalOpen(false)}
+      />
 
       <Footer />
     </div>
